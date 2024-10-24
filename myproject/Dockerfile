@@ -1,0 +1,17 @@
+# Use the official Python image from the Docker Hub
+FROM python:3.10
+
+# Set the working directory in the container
+WORKDIR /code
+
+# Copy the requirements file into the container
+COPY requirements.txt .
+
+# Install the required Python packages
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the current directory contents into the container
+COPY . .
+
+# Run the command to start the server
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
